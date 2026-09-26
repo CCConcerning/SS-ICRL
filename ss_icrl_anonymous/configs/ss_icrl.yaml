@@ -1,0 +1,43 @@
+models:
+  - Qwen2.5-Math-7B
+
+datasets:
+  - AMC-TTT
+
+# Four reasoning strategies with eight samples each.
+k: 32
+per_view_k: 8
+temperature: 0.6
+top_p: 0.95
+context_len: 8192
+batch: 1
+
+# Each update round is followed by one separate final evaluation round.
+rounds: 5
+summary_length: 500
+answer_length: 5000
+gpu_memory_utilization: 0.7
+
+# Answer extraction and reproducibility.
+use_answer_adapter: false
+boxed_answer_position: first
+save_prompts: true
+save_round_dynamics: true
+seed: 42
+
+views:
+  forward: >
+    Start from the given conditions and construct the solution forward toward the target.
+    Derive each necessary intermediate result from information already established.
+  backward: >
+    Start from the target quantity or statement and reason backward about what conditions
+    or intermediate results would be sufficient to establish it. Then connect these
+    requirements back to the given conditions.
+  transform: >
+    Before solving, transform the problem into an alternative mathematical representation,
+    such as equations, coordinates, a graph, a recurrence, a table, or an equivalent problem.
+    Carry out the main derivation in this transformed representation.
+  verify: >
+    First form a plausible candidate result or key claim. Actively test it using boundary cases,
+    small cases, alternative possibilities, or consistency checks. Revise it if necessary,
+    then justify the final result.

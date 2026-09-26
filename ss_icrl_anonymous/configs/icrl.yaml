@@ -1,0 +1,27 @@
+models:
+  - Qwen2.5-Math-7B
+
+datasets:
+  - AIME-TTT
+  - AMC-TTT
+  - MATH-TTT
+  - GPQA-TTT
+
+k: 16
+temperature: 0.6
+top_p: 0.95
+context_len: 4096
+batch: 1
+rounds: 5
+entropy: true
+entropy_k: 16
+entropy_penalty: true
+summary_length: 100
+answer_length: 5000
+final_gen_k: 32
+epsilon: 0.0
+use_gt_reward: false
+prompt_format: raw
+enable_thinking: false
+boxed_answer_position: first
+gpu_memory_utilization: 0.7
